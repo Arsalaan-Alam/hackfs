@@ -8,6 +8,8 @@ import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { mainnet, polygon, optimism, arbitrum ,polygonMumbai} from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import DefaultNavbar from '@/components/DefaultNavbar';
+import { AuthProvider } from '@/context/AuthContext';
 const { chains, publicClient } = configureChains(
   [mainnet, polygon, optimism, arbitrum,polygonMumbai],
   [
@@ -28,11 +30,16 @@ const wagmiConfig = createConfig({
   publicClient
 })
 
+
 export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig config={wagmiConfig}>
     <RainbowKitProvider chains={chains}>
+      <AuthProvider>
+
+    <DefaultNavbar/>
     <Component {...pageProps} />
+      </AuthProvider>
     </RainbowKitProvider>
   </WagmiConfig>
   )
