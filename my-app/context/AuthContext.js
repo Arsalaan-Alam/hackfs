@@ -1,11 +1,17 @@
 import React,{useState,createContext,useCallback,useEffect} from "react";
-import { useDisconnect,useAccount } from 'wagmi'
+import { useDisconnect,useAccount,useEnsName,useEnsAvatar } from 'wagmi'
 
 export const AuthContext = createContext()
 
 export const AuthProvider=({children})=>{
     const { disconnect } = useDisconnect()
     const { address, isConnecting, isDisconnected } = useAccount()
+    const {data:ensName} = useEnsName({
+        address:address
+    })
+    const {data:ensAvatar} = useEnsAvatar({
+        name:ensName
+    })
 
 
     return (
@@ -17,6 +23,8 @@ export const AuthProvider=({children})=>{
             address,
             isConnecting,
             isDisconnected,
+            ensName,
+            ensAvatar
 
         }}
         >

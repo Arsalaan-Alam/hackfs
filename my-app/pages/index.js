@@ -12,7 +12,7 @@ import DefaultTable from '@/components/DefaultTable';
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const {isDisconnected,logout} = useContext(AuthContext)
+  const {isDisconnected,ensName} = useContext(AuthContext)
   return (
     <>
       <Head>
