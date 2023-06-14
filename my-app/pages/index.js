@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
+import { Inter, Updock } from '@next/font/google'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import DefaultTabs from '@/components/DefaultTabs';
 import Welcome from '@/components/Welcome';
 import DefaultTable from '@/components/DefaultTable';
+import Upload from '@/components/Upload';
 // import styles from '@/styles/Home.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -27,6 +28,7 @@ export default function Home() {
         <div className='md:w-3/4 w-full m-auto p-4'>
           <Welcome/>
         <DefaultTabs/>
+        <Upload/>
           </div>}
         {/* <DefaultTable/> */}
 
