@@ -8,7 +8,6 @@ function Upload() {
   const fileInputRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadLink, setUploadLink] = useState("");
-  const [textContent,setTextContent] = useState("");
   const [uploadingPost,setUploadingPost] = useState(false);
 
 

@@ -1,18 +1,22 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter, Updock } from '@next/font/google'
+
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import DefaultTabs from '@/components/DefaultTabs';
 import Welcome from '@/components/Welcome';
-import DefaultTable from '@/components/DefaultTable';
+
 import Upload from '@/components/Upload';
+import YourUpload from '@/components/YourUpload';
+import OpenRequest from '@/components/OpenRequest';
 // import styles from '@/styles/Home.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
+
+
 
 export default function Home() {
+  const UserTabs = ["Your Uploads","Open Requests"]
+  const TabComponents = [<YourUpload/>,<OpenRequest/>]
   const {isDisconnected,ensName} = useContext(AuthContext)
   return (
     <>
@@ -27,7 +31,7 @@ export default function Home() {
         {!isDisconnected && 
         <div className='md:w-3/4 w-full m-auto p-4'>
           <Welcome/>
-        <DefaultTabs/>
+        <DefaultTabs tabs = {UserTabs} tabC = {TabComponents}/>
         <Upload/>
           </div>}
         {/* <DefaultTable/> */}

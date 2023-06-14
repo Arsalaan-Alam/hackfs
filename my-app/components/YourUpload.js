@@ -1,29 +1,21 @@
 import React from 'react'
 import { Table } from 'flowbite-react';
-import ListCompYourUploads from './ListCompYourUploads';
+import TableRow from './TableRow';
+import TableHead from './TableHead';
+
 
 
 const YourUpload = () => {
+  const rowC = ["123","0/125","8"]
+  const fields = ["Request ID","Submitted To","Status","Claim","View"]
+
+
   return (
     <Table hoverable>
-    <Table.Head>
-      <Table.HeadCell>
-        File Name
-      </Table.HeadCell>
-      <Table.HeadCell>
-        TimeStamp
-      </Table.HeadCell>
-      <Table.HeadCell>
-        Submitted To
-      </Table.HeadCell>
-      <Table.HeadCell>
-        Request Help
-      </Table.HeadCell>
-    </Table.Head>
+<TableHead heads ={fields}/>
     <Table.Body className="divide-y">
         
-<ListCompYourUploads/>
-<ListCompYourUploads/>
+<TableRow rowContent={rowC}/>
     </Table.Body>
   </Table>
   )
