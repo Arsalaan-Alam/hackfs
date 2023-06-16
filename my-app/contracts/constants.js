@@ -1,5 +1,5 @@
-export const validatorAddress = "0x3A9A5994DA05DD12F5811C19833c802cF46968d4"
-export const collectorAddress = "0xcC260250980c77F56d6570eec76ECAE839E8a822"
+export const validatorAddress = "0x48D38d1E9314BDA242e9cf21C6d381f4BB026F1c"
+export const collectorAddress = "0x21284f1B0AD064C90a8A82dC5C2103DC3abE4834"
 export const validatorAbi = [
 	{
 		"inputs": [
@@ -159,7 +159,7 @@ export const validatorAbi = [
 		"type": "function"
 	}
 ]
-export const collectorAbi = [
+export const collectorAbi =[
 	{
 		"inputs": [
 			{
@@ -349,6 +349,386 @@ export const collectorAbi = [
 		"name": "createSubmission",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllCollections",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "validator",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKey",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "request",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "validationFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxParticipants",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "acceptedSubmissionCount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Collector.Collection[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllOffers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "collectionIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "requestURI",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKey",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "enum Collector.OfferStatus",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "resultURI",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Collector.Offer[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllSubmission",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "collectionIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "submitter",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "enum Collector.SubmissionStatus",
+						"name": "status",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct Collector.Submission[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getCollectionByIndex",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "validator",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKey",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "request",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "validationFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxParticipants",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "acceptedSubmissionCount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Collector.Collection",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getCollectionCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "startPage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "count",
+				"type": "uint256"
+			}
+		],
+		"name": "getCollectionsByPage",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "validator",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKey",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "request",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "validationFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxParticipants",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "acceptedSubmissionCount",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Collector.Collection[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getSubmissionByAddress",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "collectionIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "submitter",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "enum Collector.SubmissionStatus",
+						"name": "status",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct Collector.Submission[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getSubmissionCountByAddress",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "collectionIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "getSubmissionCountByCollectionIndex",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "collectionIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "getSubmissionsByCollectionIndex",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "collectionIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "submitter",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "uri",
+						"type": "string"
+					},
+					{
+						"internalType": "enum Collector.SubmissionStatus",
+						"name": "status",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct Collector.Submission[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{

@@ -8,6 +8,8 @@ const YourCollection = () => {
     const fields = ["Request ID","Description","Status","Offers"]
     const rowC = ["123","0/125","8"]
 
+    
+
   return (
     <Table hoverable>
 <TableHead heads = {fields}/>

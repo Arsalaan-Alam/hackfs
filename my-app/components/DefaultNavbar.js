@@ -42,7 +42,7 @@ export default function DefaultNavbar() {
             Features
           </p>
         </Navbar.Link>
-        <Navbar.Link href="#">
+        <Navbar.Link href="/Validator">
           Aggregator Login
         </Navbar.Link>
         <Navbar.Link href="#" onClick={logout}>

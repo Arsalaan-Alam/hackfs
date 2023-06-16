@@ -32,7 +32,7 @@ export default function Home() {
         <div className='md:w-3/4 w-full m-auto p-4'>
           <Welcome/>
         <DefaultTabs tabs = {UserTabs} tabC = {TabComponents}/>
-        <Upload/>
+        {/* <Upload/> */}
           </div>}
         {/* <DefaultTable/> */}
 
