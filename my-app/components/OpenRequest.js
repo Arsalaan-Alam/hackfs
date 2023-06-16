@@ -5,23 +5,24 @@ import TableRow from './TableRow';
 import TableHead from './TableHead';
 import { collectorAbi,collectorAddress,validatorAddress,validatorAbi } from '@/contracts/constants';
 import {
-  usePrepareContractWrite,
-  useContractWrite,
-  useWaitForTransaction,
+  
+  
+  
   useContractRead,
-  usePublicClient
+  
 } from 'wagmi'
+import Upload from './Upload';
 
 
 const OpenRequest = () => {
   const [openReq,setOpenReq] = useState([])
-  const [idx,setidx] = useState(0)
-  const [uri,setUri] = useState("")
+  // const [idx,setidx] = useState(0)
+  // const [uri,setUri] = useState("")
 
 
 
 
-  const rowC = ["123","0/125","8/100","upload button comes here"]
+  // const rowC = ["123","0/125","8/100","upload button comes here"]
   const fields = ["Request ID","Description","Status","Upload"]
 
 
@@ -39,35 +40,27 @@ const OpenRequest = () => {
     }
     
   })
-  const { config } = usePrepareContractWrite({
-    address: collectorAddress,
-    abi: collectorAbi,
-    functionName: 'createSubmission',
-    // value:parseEther("0"),
-    args: [idx,uri]
-    
-  })
-  const { data:contractWite, write,isLoading:loadingContractWrite,isSuccess } = useContractWrite(config)
 
-  const submit = (idx)=>{
-    const uri = "new uri"
-    setUri(uri)
-    setidx(idx)
+
+  // const submit = (idx)=>{
+  //   const uri = "new uri"
+  //   setUri(uri)
+  //   setidx(idx)
     
-    write()
+  //   write()
 
   
   
 
 
-  // write()
+  // // write()
 
 
-  }
+  // }
   console.log(data,isLoading,isError)
 
   const rendered = openReq.map((d,k)=>{
-    const list =[k,d.request,`${d.acceptedSubmissionCount}/${d.maxParticipants}`,<Button onClick={()=>submit(k)}>upload</Button>]
+    const list =[k,d.request,`${d.acceptedSubmissionCount}/${d.maxParticipants}`,<Upload idx = {k}/>]
     return(
     <TableRow key = {k} rowContent ={list}/>
 
