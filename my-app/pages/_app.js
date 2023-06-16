@@ -10,8 +10,29 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import DefaultNavbar from '@/components/DefaultNavbar';
 import { AuthProvider } from '@/context/AuthContext';
+
+
+const filecoinCalibration = {
+  id: 314159,
+  name: 'Filecoin - Calibration testnet',
+  network: 'Filecoin - Calibration testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'tFIL',
+    symbol: 'tFIL',
+  },
+  rpcUrls: {
+    public: { http: ['https://filecoin-calibration.chainup.net/rpc/v1'] },
+    default: { http: ['https://filecoin-calibration.chainup.net/rpc/v1'] },
+  },
+  blockExplorers: {
+    etherscan: { name: 'filscan', url: 'https://calibration.filfox.info/en' },
+    default: { name: 'filscan', url: 'https://calibration.filfox.info/en' },
+  },
+ 
+} 
 const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum,polygonMumbai],
+  [mainnet, polygon, optimism, arbitrum,polygonMumbai,filecoinCalibration],
   [
   
     publicProvider()
@@ -34,7 +55,7 @@ const wagmiConfig = createConfig({
 export default function App({ Component, pageProps }) {
   return (
     <WagmiConfig config={wagmiConfig}>
-    <RainbowKitProvider chains={chains}>
+    <RainbowKitProvider chains={chains} initialChain={80001}>
       <AuthProvider>
 
     <DefaultNavbar/>
