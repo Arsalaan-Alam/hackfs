@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@500&family=Montserrat:wght@700&family=Varela+Round&display=swap');
+body{
+    font-family: "anuphan";
+}
+
+.headingg{
+    font-family: "Montserrat" !important;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.paratest{
+    font-family: "Anuphan" !important;
+    font-size: 18px;
+    margin-right: 20px;
+    margin-top: 10px;
+    color: black;
+}
+.helg{
+    margin-right: 20px;
+    color: black;
+    margin-top: 10px;
+}
