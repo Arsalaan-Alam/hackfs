@@ -4,9 +4,16 @@ import { Navbar } from 'flowbite-react';
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
+import { useRouter } from 'next/router';
+import {BsGithub} from "react-icons/bs"
 
 export default function DefaultNavbar() {
   const {isDisconnected,logout} = useContext(AuthContext)
+
+  const router = useRouter()
+
+  const path = router.pathname
+  
 
   return (
     <Navbar
@@ -28,11 +35,10 @@ export default function DefaultNavbar() {
       <Navbar.Toggle />
       <Navbar.Collapse>
         <Navbar.Link
-          href="#"
+          href="https://github.com/Arsalaan-Alam/hackfs/tree/main/my-app"
+          target='_blank'
         >
-          <p>
-            GitHub
-          </p>
+          <BsGithub className='h-5 w-5'/>
         </Navbar.Link>
         <Navbar.Link
 
@@ -42,12 +48,14 @@ export default function DefaultNavbar() {
             Features
           </p>
         </Navbar.Link>
-        <Navbar.Link href="/Validator">
-          Aggregator Login
-        </Navbar.Link>
-        <Navbar.Link href="#" onClick={logout}>
+        {path==="/Validator"?<Navbar.Link href="/">
+          User Login
+        </Navbar.Link>:<Navbar.Link href="/Validator">
+          Validator Login
+        </Navbar.Link>}
+        {!isDisconnected && <Navbar.Link href="#" onClick={logout}>
           Logout
-        </Navbar.Link>
+        </Navbar.Link>}
 
       </Navbar.Collapse>
     </Navbar>

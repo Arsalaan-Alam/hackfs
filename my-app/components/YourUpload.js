@@ -14,7 +14,7 @@ const YourUpload = () => {
   const{address} = useContext(AuthContext)
   const [data,setData] = useState([])
   const rowC = ["123","0/125","8"]
-  const fields = ["Request ID","Status","View","Claim"]
+  const fields = ["Request ID","Status","View"]
 
   const { data:readData,isLoading,isError } = useContractRead({
     address: collectorAddress,

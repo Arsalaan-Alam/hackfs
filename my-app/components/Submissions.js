@@ -4,6 +4,8 @@ import TableRow from './TableRow'
 import { Table } from 'flowbite-react'
 import { useContractRead } from 'wagmi'
 import { collectorAbi,collectorAddress } from '@/contracts/constants'
+import Verify from './Verify'
+import Reject from './Reject'
 
 
 const Submissions = () => {
@@ -30,7 +32,7 @@ const Submissions = () => {
     const rendered = data.map((d,k)=>{
       const list = [parseInt(d.collectionIndex),d.submitter,
         
-        <a className='text-blue-500' href={d.uri} target='_blank'>View</a>,"verify","reject"]
+        <a className='text-blue-500' href={d.uri} target='_blank'>View</a>,<Verify idx = {k}></Verify>,<Reject idx = {k}/>]
       return (
   <TableRow rowContent={list} key = {k}/>
   
