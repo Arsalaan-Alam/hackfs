@@ -1,14 +1,11 @@
 import { SpheronClient, ProtocolEnum } from "@spheron/storage";
-import LitJsSdk from "@lit-protocol/lit-node-client";
+import { LitNodeClient, LitJsSdk } from "@lit-protocol/lit-node-client";
 import dotenv from 'dotenv'
 import fs from 'fs'
 
 dotenv.config()
 const token = process.env.SPHERON_TOKEN
 const chain = "ethereum"
-
-const litClient = new LitJsSdk.LitNodeClient({});
-await litClient.connect();
   
 const spheron = new SpheronClient({
     token: token,
@@ -33,6 +30,12 @@ const setAccessConditions = async () => {
 
 
 export const encryptAndUpload = async (filePath) => {
+
+    const litClient = new LitNodeClient({
+        litNetwork: 'serrano',
+        debug: false,
+    });
+    await litClient.connect();
     
     const bucketName = 'fvm_bucket'      
     const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: chain });

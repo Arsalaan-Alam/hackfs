@@ -1,6 +1,6 @@
 import { encryptAndUpload , decryptAndUpload } from '../my-app/encrypt/encrypt.js'
 
-async function main () {
+export async function upload () {
 
     try {
         const file = './testfile.txt'
