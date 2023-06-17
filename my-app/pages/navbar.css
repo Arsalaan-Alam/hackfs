@@ -20,3 +20,23 @@ body{
     color: black;
     margin-top: 10px;
 }
+.headin{
+    text-align: center;
+    font-family: "Montserrat";
+    font-size: 80px;
+    margin-top: 10%
+}
+.desc{
+    text-align: center;
+    font-family: "Anuphan";
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.achc{
+    text-align: center;
+    font-family: "Montserrat";
+}
+.tbs{
+    font-family: "Anuphan";
+    color: black;
+}
