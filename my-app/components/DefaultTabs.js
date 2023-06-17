@@ -48,11 +48,7 @@ export default function DefaultTabs(props) {
       >
       <YourRequest/>
       </Tabs.Item>
-      <Tabs.Item
-
-        title="Payout History"
-      >
-        <PayoutHistory/>
+    
       </Tabs.Item> */}
       {rendered}
       
