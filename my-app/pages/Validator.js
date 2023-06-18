@@ -51,7 +51,16 @@ const verifyButton = <div className='mt-48'>
 
   return (
     <main className="">
-      {isDisconnected && <ConnectButton/>}
+      {isDisconnected && (
+          <div className='topmain'>
+          <p className='headin'>Welcome to MedDAO</p>
+          <p className= "desc">We revolutionize medical research by incentivizing patient contributions to create decentralized datasets  for AI-driven <br></br> healthcare advancements. Completely anonymous, aggregrated, encrypted & secure platform. </p>
+          <div className="flex justify-center">
+           
+            <ConnectButton />
+          </div>
+          </div>
+        )}
     {!isDisconnected && !isVerified && verifyButton}
     {!isDisconnected && isVerified && 
     <div className='md:w-3/4 w-full m-auto p-4'>

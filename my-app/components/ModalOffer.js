@@ -6,8 +6,11 @@ import { usePrepareContractWrite,useContractWrite } from 'wagmi'
 import { collectorAbi,collectorAddress } from '@/contracts/constants'
 import { Spinner } from 'flowbite-react'
 import { parseEther, stringToHex } from 'viem'
+import { AuthContext } from '@/context/AuthContext';
+import { useContext } from 'react';
 
 export default function ModalOffer(properties) {
+  const {address} = useContext(AuthContext)
   const [openModal, setOpenModal] = useState();
   const props = { openModal, setOpenModal };
 const idx = properties.idx
@@ -21,7 +24,7 @@ const { config } = usePrepareContractWrite({
   functionName: 'createOffer',
   value:parseEther(ammount),
   
-  args: [parseInt(idx),uri,stringToHex("",{size:32})]
+  args: [parseInt(idx),address,uri,stringToHex("",{size:32})]
   
 })
 const { data, write,isLoading,isSuccess } = useContractWrite(config)
@@ -44,18 +47,39 @@ function handleUri(e){
         <Modal.Body>
           <div className="space-y-6">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">Create a New Offer</h3>
+           
             <div>
-              <div className="mb-2 block">
-                <Label htmlFor="deposit" value="Your Deposit" />
-              </div>
-              <TextInput onChange={handleValue} value={ammount} id="deposit" placeholder="Amount in matic" required />
-            </div>
-            <div>
-              <div className="mb-2 block">
-                <Label htmlFor="request"  value="Your Request" />
-              </div>
-              <TextInput onChange={handleUri} value={uri}  id="request" placeholder="Enter your Request Uri"  required />
-            </div>
+        <div className="mb-2 block">
+          <Label
+            htmlFor="amount"
+            value="Enter amount in matic"
+          />
+        </div>
+        <TextInput
+          id="request"
+          required
+          shadow
+          value={ammount}
+          onChange={handleValue}
+          
+        />
+      </div>
+      <div>
+        <div className="mb-2 block">
+          <Label
+            htmlFor="request"
+            value="Enter Request Command"
+          />
+        </div>
+        <TextInput
+          id="request"
+          required
+          shadow
+          value={uri}
+          onChange={handleUri}
+          
+        />  
+      </div>
             
             <div className="w-full">
              <Button disabled={!write || isLoading} onClick={write}>

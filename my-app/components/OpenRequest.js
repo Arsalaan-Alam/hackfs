@@ -7,6 +7,8 @@ import { collectorAbi,collectorAddress,validatorAddress,validatorAbi } from '@/c
 import { useContractRead } from 'wagmi'
 import Upload from './Upload';
 
+import { formatEther } from 'viem';
+
 
 const OpenRequest = () => {
   const [openReq,setOpenReq] = useState([])
@@ -17,7 +19,7 @@ const OpenRequest = () => {
 
 
   // const rowC = ["123","0/125","8/100","upload button comes here"]
-  const fields = ["Request ID","Description","Status","Upload"]
+  const fields = ["Request ID","Description","Status","Price","Upload"]
 
 
   const { data,isLoading,isError } = useContractRead({
@@ -54,7 +56,8 @@ const OpenRequest = () => {
   console.log(data,isLoading,isError)
 
   const rendered = openReq.map((d,k)=>{
-    const list =[k,d.request,`${d.acceptedSubmissionCount}/${d.maxParticipants}`,<Upload idx = {k}/>]
+    const amountToSend = formatEther(`${parseInt(d.deposit / d.maxParticipants)}`)
+    const list =[k,d.request,`${d.acceptedSubmissionCount}/${d.maxParticipants}`,amountToSend,<Upload idx = {k}/>]
     return(
     <TableRow key = {k} rowContent ={list}/>
 

@@ -7,6 +7,7 @@ import { AuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
 import {BsGithub} from "react-icons/bs"
 
+
 export default function DefaultNavbar() {
   const {isDisconnected,logout} = useContext(AuthContext)
 
@@ -23,39 +24,36 @@ export default function DefaultNavbar() {
 
         href="/"
       >
-        <img
-          alt="Logo"
-          className="mr-3 h-6 sm:h-9"
-          src=""
-        />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-          MedDao
+        
+        <span className="self-center whitespace-nowrap text-3xl font-semibold dark:text-white headingg">
+         💊 MedDAO
         </span>
       </Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse>
-        <Navbar.Link
-          href="https://github.com/Arsalaan-Alam/hackfs/tree/main/my-app"
-          target='_blank'
-        >
-          <BsGithub className='h-5 w-5'/>
-        </Navbar.Link>
+       
         <Navbar.Link
 
           href="#"
         >
-          <p>
+          <p className='paratest'>
             Features
           </p>
         </Navbar.Link>
-        {path==="/Validator"?<Navbar.Link href="/">
+        {path==="/Validator"?<Navbar.Link href="/" className='paratest'>
           User Login
-        </Navbar.Link>:<Navbar.Link href="/Validator">
+        </Navbar.Link>:<Navbar.Link href="/Validator" className='paratest'>
           Validator Login
         </Navbar.Link>}
-        {!isDisconnected && <Navbar.Link href="#" onClick={logout}>
+        {!isDisconnected && <Navbar.Link href="#" onClick={logout} className='paratest'>
           Logout
         </Navbar.Link>}
+        <Navbar.Link
+          href="https://github.com/Arsalaan-Alam/hackfs/tree/main/my-app"
+          target='_blank'
+        >
+          <BsGithub className='h-5 w-5 helg'/>
+        </Navbar.Link>
 
       </Navbar.Collapse>
     </Navbar>
