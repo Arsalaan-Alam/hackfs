@@ -1,11 +1,11 @@
 
 const { SpheronClient, ProtocolEnum } = require("@spheron/storage");
-const SPHERON_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiIzZDkwYTE5MmViODJiM2M1ZDc3NGY3YThmN2I5MDVjYWIxODIyZWM0ZmI5ZTNkNWIyYmZkODZhMDJhMDdhZTJkZmVkMzU4OGRhYjFjOTQ5MDkzMzQwYWNkNTQ5ZWE5ZjNlMzg3MTcyNGEzN2ExOTM0MDRmNDAwZDY3YWIzOWM3ZCIsImlhdCI6MTY4MzcwMzAyOCwiaXNzIjoid3d3LnNwaGVyb24ubmV0d29yayJ9.tM3jYqDwrcj215NjWpyUXgtCJXysv29kJMw3VpXdXR4"
+const SPHERON_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiJmMmYzNjhlMzRiZGRhYmQxMWVlOWU0NGIyMmFhNTYwM2VlODk4ZGU2M2ZiMDkxZDFmMGFkYzFjMTkzY2ZlMWNjM2EwMWIyNWI0Yjg3MDQ1ZjEzMTY4NGM0ZTNlYmJiMjQ3MDQxMzJkYmIyZDllMTNmY2M1NDI5NmY1OGIxOGMxMCIsImlhdCI6MTY4NzA3NzIzMiwiaXNzIjoid3d3LnNwaGVyb24ubmV0d29yayJ9.ZTEHoDeV1oA3jNzmD2_mu0EXz_6r9yX_Qjtw8PCnRSI"
 export default async function handler(req, res) {
 
     try {
-        const bucketName = "example-browser-upload";
-        const protocol = ProtocolEnum.FILECOIN;
+        const bucketName = "fvm_bucket";
+        const protocol = ProtocolEnum.IPFS;
     
         const client = new SpheronClient({
           token: SPHERON_TOKEN,

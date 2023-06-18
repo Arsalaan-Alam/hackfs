@@ -1,9 +1,8 @@
-import LitJsSdk from "@lit-protocol/lit-node-client-nodejs";
+import * as LitJsSdk from "@lit-protocol/lit-node-client";
+//import fs from 'fs'
 
-const client = new LitJsSdk.LitNodeClient();
+
 const chain = "ethereum";
-await client.connect()
-const litNodeClient = client
 
 const setAccessConditions = async (addr) => {
 
@@ -28,8 +27,18 @@ const setAccessConditions = async (addr) => {
 
 export const encryptData = async (filePath) => {    
 
+    const litNodeClient = new LitJsSdk.LitNodeClient();
+    await litNodeClient.connect()
     const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: "ethereum" });
-    const { encryptedFile, symmetricKey } = await LitJsSdk.encryptFile(filePath)
+    //const file = fs.readFileSync(filePath, { encoding: 'utf8', flag: 'r' })
+    console.log(filePath)
+    console.log(typeof filePath)
+    if (filePath instanceof Blob || filePath instanceof File) {
+        console.log('here',filePath)
+        const { encryptedFile, symmetricKey } = await LitJsSdk.encryptFile({filePath})
+    } else {
+        console.error("Invalid file object provided.");
+    }    
     const encryptedSymmetricKey = await litNodeClient.saveEncryptionKey({
         accessControlConditions,
         symmetricKey,
@@ -37,6 +46,7 @@ export const encryptData = async (filePath) => {
         chain,
     });
     
+    console.log('key : ',encryptedSymmetricKey)
     return {
         encryptedFile,
         encryptedSymmetricKey: LitJsSdk.uint8arrayToString(encryptedSymmetricKey, "base16")
@@ -44,8 +54,10 @@ export const encryptData = async (filePath) => {
 }
 
 
-export const decryptData = (encryptedFile, encryptedSymmetricKey) => {
+export const decryptData = async (encryptedFile, encryptedSymmetricKey) => {
 
+    const litNodeClient = new LitJsSdk.LitNodeClient();
+    await litNodeClient.connect()
     const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: "ethereum" });
     const symmetricKey = await litNodeClient.getEncryptionKey({
         accessControlConditions,
