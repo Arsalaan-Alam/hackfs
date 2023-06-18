@@ -34,22 +34,22 @@ export default function DefaultNavbar() {
       <Navbar.Toggle />
       <Navbar.Collapse>
        
-        <Navbar.Link
-
-          href="#"
-        >
-          <p className='paratest'>
-            Features
-          </p>
+      <Navbar.Link href="#">
+          <p className="paratest">Features</p>
         </Navbar.Link>
+
         {path==="/Validator"?<Navbar.Link href="/" className='paratest'>
+
           User Login
         </Navbar.Link>:<Navbar.Link href="/Validator" className='paratest'>
           Validator Login
         </Navbar.Link>}
+
         {!isDisconnected && <Navbar.Link href="#" onClick={logout} className='paratest'>
           Logout
         </Navbar.Link>}
+
+
         <Navbar.Link
           href="https://github.com/Arsalaan-Alam/hackfs/tree/main/my-app"
           target='_blank'

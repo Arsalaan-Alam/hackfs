@@ -13,7 +13,10 @@ body{
     font-size: 18px;
     margin-right: 20px;
     margin-top: 10px;
-    color: black;
+    color: black !important;
+}
+.paratest:hover{
+    color: rgb(122, 97, 246) !important;
 }
 .helg{
     margin-right: 20px;
