@@ -1,2 +1,2 @@
 node_modules
-encrypt/.env
+./my-app/encrypt/.env
