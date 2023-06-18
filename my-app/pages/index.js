@@ -11,14 +11,15 @@ import YourUpload from '@/components/YourUpload';
 import OpenRequest from '@/components/OpenRequest';
 import AllCollections from '@/components/AllCollections';
 import VideoCall from '@/pages/VideoCall';
+import CreatedOffer from '@/components/CreatedOffer';
 // import styles from '@/styles/Home.module.css'
 
 
 
 
 export default function Home() {
-  const UserTabs = ["Your Uploads","Open Requests","All Data Collections"]
-  const TabComponents = [<YourUpload/>,<OpenRequest/>,<AllCollections/>]
+  const UserTabs = ["Your Uploads","Open Requests","All Data Collections","Created Offers"]
+  const TabComponents = [<YourUpload/>,<OpenRequest/>,<AllCollections/>,<CreatedOffer/>]
   const {isDisconnected,ensName} = useContext(AuthContext)
   return (
     <>

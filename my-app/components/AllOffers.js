@@ -5,10 +5,13 @@ import { Table } from 'flowbite-react'
 
 import { useContractRead } from 'wagmi'
 import { collectorAbi,collectorAddress } from '@/contracts/constants'
-import { parseEther } from 'viem'
+import { formatEther, parseEther } from 'viem'
+import AcceptOffer from './AcceptOffer'
+import RejectOffer from './RejectOffer'
+import Execute from './Execute'
 
 const AllOffers = () => {
-    const fields = ["request id","Amount( in Wei )","request uri","accept","reject"]
+    const fields = ["request id","created by","Amount","request command ","accept","reject","execute On bacalhau"]
     const rowC = ["123","0/125","8"]
     const [data,setData] = useState([])
     const { data:readData,isLoading,isError } = useContractRead({
@@ -29,8 +32,8 @@ const AllOffers = () => {
     })
   
     const rendered = data.map((d,k)=>{
-      const list = [parseInt(d.collectionIndex),parseFloat(d.deposit),d.requestURI,
-,"accept","reject"]
+      const list = [parseInt(d.collectionIndex),d.creator,formatEther(d.deposit),d.requestURI,
+,<AcceptOffer idx={k}/>,<RejectOffer idx = {k}/>,<Execute/>]
       return (
   <TableRow rowContent={list} key = {k}/>
   

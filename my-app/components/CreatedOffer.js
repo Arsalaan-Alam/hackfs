@@ -10,16 +10,17 @@ import {
 import { AuthContext } from '@/context/AuthContext';
 import { useContext } from 'react';
 import { formatEther } from 'viem';
-const YourUpload = () => {
+
+const CreatedOffer= () => {
   const{address} = useContext(AuthContext)
   const [data,setData] = useState([])
   const rowC = ["123","0/125","8"]
-  const fields = ["Request ID","Status","View"]
+  const fields = ["Request ID","deposit","Requested Command","status","Result"]
 
   const { data:readData,isLoading,isError } = useContractRead({
     address: collectorAddress,
     abi: collectorAbi,
-    functionName: 'getSubmissionByAddress',
+    functionName: 'getOffersByAddress',
     args:[address],
     onError(err){
       console.log(err)
@@ -34,11 +35,8 @@ const YourUpload = () => {
   })
 
   const rendered = data.map((d,k)=>{
-
     const status = d.status === 0 ? "pending": d.status===1?"accepted":"rejected"
-    const list = [parseInt(d.collectionIndex),status,
-      
-      <a className='text-blue-500' href={d.uri} target='_blank'>View</a>]
+    const list = [parseInt(d.collectionIndex),formatEther(d.deposit),d.requestURI,status,d.resultURI]
     return (
 <TableRow rowContent={list} key = {k}/>
 
@@ -57,4 +55,4 @@ const YourUpload = () => {
   )
 }
 
-export default YourUpload
+export default CreatedOffer

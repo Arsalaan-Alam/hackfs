@@ -1,5 +1,5 @@
 export const validatorAddress = "0x48D38d1E9314BDA242e9cf21C6d381f4BB026F1c"
-export const collectorAddress = "0x21284f1B0AD064C90a8A82dC5C2103DC3abE4834"
+export const collectorAddress = "0x3BD59161E54EaE32af00E0847097aBcE3ACe2B42"
 export const validatorAbi = [
 	{
 		"inputs": [
@@ -219,6 +219,19 @@ export const collectorAbi =[
 		"inputs": [
 			{
 				"internalType": "uint256",
+				"name": "_offerIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "acceptOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
 				"name": "_submissionIndex",
 				"type": "uint256"
 			}
@@ -318,6 +331,11 @@ export const collectorAbi =[
 				"type": "uint256"
 			},
 			{
+				"internalType": "address",
+				"name": "_creator",
+				"type": "address"
+			},
+			{
 				"internalType": "string",
 				"name": "_uri",
 				"type": "string"
@@ -411,6 +429,11 @@ export const collectorAbi =[
 						"internalType": "uint256",
 						"name": "collectionIndex",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
 					},
 					{
 						"internalType": "uint256",
@@ -619,6 +642,81 @@ export const collectorAbi =[
 				"type": "address"
 			}
 		],
+		"name": "getOffersByAddress",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "collectionIndex",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "deposit",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "requestURI",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "publicKey",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "enum Collector.OfferStatus",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "resultURI",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Collector.Offer[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getOffersCountByAddress",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
 		"name": "getSubmissionByAddress",
 		"outputs": [
 			{
@@ -747,6 +845,11 @@ export const collectorAbi =[
 				"type": "uint256"
 			},
 			{
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
 				"name": "deposit",
 				"type": "uint256"
@@ -773,6 +876,19 @@ export const collectorAbi =[
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_offerIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "rejectOffer",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
