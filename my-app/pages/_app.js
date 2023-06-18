@@ -10,6 +10,7 @@ import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import DefaultNavbar from '@/components/DefaultNavbar';
 import { AuthProvider } from '@/context/AuthContext';
+import "./navbar.css"
 
 
 const filecoinCalibration = {

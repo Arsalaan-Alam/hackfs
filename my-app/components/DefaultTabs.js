@@ -27,7 +27,7 @@ export default function DefaultTabs(props) {
     <Tabs.Group
       aria-label="Default tabs"
       style="default"
-      className='m-auto'
+      className='m-auto tbs'
     >
       {/* <Tabs.Item
         active
@@ -48,11 +48,7 @@ export default function DefaultTabs(props) {
       >
       <YourRequest/>
       </Tabs.Item>
-      <Tabs.Item
-
-        title="Payout History"
-      >
-        <PayoutHistory/>
+    
       </Tabs.Item> */}
       {rendered}
       

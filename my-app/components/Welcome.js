@@ -18,7 +18,7 @@ const Welcome = () => {
         img={ensAvatar}
         rounded
       />
-    <div className='text-3xl font-bold text-center w-full m-8'>{`Welcome ${visibleAddress}`}</div>
+    <div className='text-3xl font-bold text-center w-full m-8 achc'>{`Welcome ${visibleAddress}`}</div>
     </div>
   )
 }

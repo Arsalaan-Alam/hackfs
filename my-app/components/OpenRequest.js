@@ -4,13 +4,7 @@ import { ethers } from "ethers";
 import TableRow from './TableRow';
 import TableHead from './TableHead';
 import { collectorAbi,collectorAddress,validatorAddress,validatorAbi } from '@/contracts/constants';
-import {
-  
-  
-  
-  useContractRead,
-  
-} from 'wagmi'
+import { useContractRead } from 'wagmi'
 import Upload from './Upload';
 
 import { formatEther } from 'viem';
