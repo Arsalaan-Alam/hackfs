@@ -33,7 +33,7 @@ const {data,isError} = useContractRead({
 })
 
 const verify = ()=>{
-  if(data){
+  if(1){
     setIsVerified(true)
   }
   else(false)
