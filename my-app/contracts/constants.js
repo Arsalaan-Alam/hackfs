@@ -1,4 +1,4 @@
-export const validatorAddress = "0x48D38d1E9314BDA242e9cf21C6d381f4BB026F1c"
+export const validatorAddress = "	"
 export const collectorAddress = "0xdC29998D9d7e24f8EE1C77205ED710a23518cA6b"
 export const validatorAbi = [
 	{
