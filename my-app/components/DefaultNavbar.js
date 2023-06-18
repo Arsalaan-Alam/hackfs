@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { AuthContext } from '@/context/AuthContext';
 import { useRouter } from 'next/router';
 import {BsGithub} from "react-icons/bs"
+import {BiBell} from "react-icons/bi"
+import NotificationsModal from './NotificationsModal';
 
 
 export default function DefaultNavbar() {
@@ -52,8 +54,10 @@ export default function DefaultNavbar() {
           href="https://github.com/Arsalaan-Alam/hackfs/tree/main/my-app"
           target='_blank'
         >
-          <BsGithub className='h-5 w-5 helg'/>
+          <BsGithub className='h-6 w-6 helg'/>
         </Navbar.Link>
+        
+        {!isDisconnected && <NotificationsModal/>}
 
       </Navbar.Collapse>
     </Navbar>

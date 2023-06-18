@@ -35,7 +35,7 @@ const YourUpload = () => {
 
   const rendered = data.map((d,k)=>{
 
-    const status = d.status === 0 ? "pending": d.status===1?"accepted":"rejected"
+    const status = d.status === 0 ? "Pending Approval": d.status===1?"Accepted You recieved your payout!":"rejected"
     const list = [parseInt(d.collectionIndex),status,
       
       <a className='text-blue-500' href={d.uri} target='_blank'>View</a>]

@@ -19,7 +19,7 @@ const OpenRequest = () => {
 
 
   // const rowC = ["123","0/125","8/100","upload button comes here"]
-  const fields = ["Request ID","Description","Status","Price","Upload"]
+  const fields = ["Request ID","Description","Status","reward","Upload"]
 
 
   const { data,isLoading,isError } = useContractRead({

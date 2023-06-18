@@ -17,7 +17,7 @@ import CreatedOffer from '@/components/CreatedOffer';
 
 
 export default function Home() {
-  const UserTabs = ["Your Uploads","Open Requests","All Data Collections","Created Offers"]
+  const UserTabs = ["Your Uploads","Open Requests","Marketplace","My Offers"]
   const TabComponents = [<YourUpload/>,<OpenRequest/>,<AllCollections/>,<CreatedOffer/>]
   const {isDisconnected,ensName} = useContext(AuthContext)
 //import styles from './Home.module.css'

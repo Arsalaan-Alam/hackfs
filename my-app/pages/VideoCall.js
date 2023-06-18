@@ -21,7 +21,7 @@ const VideoCall = () => {
     <div>VideoCall
       <ConnectButton/>
       {console.log(isIntialized)}
-    <button onClick={()=>initialize("3E5RFaCpOu4Gz87kAzf8UHZJ6AJCfz0B")}>init</button>
+    <button onClick={()=>initialize("mcyC3teDgY4n6stHvAYbsqHj7lEgWWwW")}>init</button>
 {/* <Video peerId={meId} stream={videoStream} />
 <Audio peerId={meId} stream={audioStream} /> */}
 {/* <div className="grid grid-cols-4">

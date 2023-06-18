@@ -9,6 +9,7 @@ import { formatEther, parseEther } from 'viem'
 import AcceptOffer from './AcceptOffer'
 import RejectOffer from './RejectOffer'
 import Execute from './Execute'
+import { useEnsName } from 'wagmi'
 
 const AllOffers = () => {
     const fields = ["request id","created by","Amount","request command ","reject","execute On bacalhau"]
@@ -32,7 +33,15 @@ const AllOffers = () => {
     })
   
     const rendered = data.map((d,k)=>{
-      const list = [parseInt(d.collectionIndex),d.creator,formatEther(d.deposit),d.requestURI,
+      const address = d.creator
+    //   const {data:ensName} = useEnsName({
+    //     address:address
+    // })
+      const visibleAddress = address?.slice(0,5) +"..."+address?.slice(-4)
+      const command = d.requestURI
+      const visibleCommand = command?.slice(0,5) +"..."+command?.slice(-4)
+    
+      const list = [parseInt(d.collectionIndex),visibleAddress,formatEther(d.deposit),visibleCommand,
 ,<RejectOffer idx = {k}/>,<Execute idx = {parseInt(d.collectionIndex)} request={d.requestURI} offerIndex = {k}/>]
       return (
   <TableRow rowContent={list} key = {k}/>

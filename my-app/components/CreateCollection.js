@@ -3,6 +3,7 @@
 import { Button, Label, Spinner, TextInput } from 'flowbite-react';
 import { collectorAddress,collectorAbi } from '@/contracts/constants';
 import { useContext, useState } from 'react';
+import { payloads } from '@pushprotocol/restapi';
 
 import { parseEther, stringToHex } from 'viem';
 import {
@@ -10,11 +11,21 @@ import {
   useContractWrite,
 } from 'wagmi'
 import { AuthContext } from '@/context/AuthContext';
+// import * as dotenv from 'dotenv'
+import { ENV } from '@pushprotocol/restapi/src/lib/constants'
+import { ethers } from 'ethers';
+
+// dotenv.config()
 
 
+const env = ENV.STAGING
 
 
+const channelPrivateKey = process.env.WALLET_PRIVATE_KEY
+const signerChannel = new ethers.Wallet(`0x${"283970708adf59d1301bd90bc03487e7d1aacf3ba873ea90ad30e610afd32838"}`)
+const channelAddress = signerChannel.address
 export default function CreateCollection() {
+  
   const zero = BigInt(0)
 
   
@@ -57,12 +68,41 @@ export default function CreateCollection() {
       setParticipants(zero)
       setRequest("")
       setAmount("0")
+      await PushAPI_payloads_sendNotification__direct_payload_all_recipients_brodcast()
 
     }
     catch{
       err=>alert(err)
     }
   }
+
+  async function PushAPI_payloads_sendNotification__direct_payload_all_recipients_brodcast(
+  ) {
+    const apiResponse = await payloads.sendNotification({
+      signer: signerChannel, // Needs to resolve to channel address
+      type: 1, // broadcast
+      identityType: 2, // direct payload
+      notification: {
+        title: `notification TITLE:`,
+        body: `notification BODY`,
+      },
+      payload: {
+        title: `New Collection Created`,
+        body: request,
+        cta: '',
+        img: '',
+      },
+      channel: `eip155:5:${channelAddress}`, // your channel address
+      env: env 
+    })
+  
+    console.log('PushAPI.payloads.sendNotification | Response - 204 OK')
+    if (true) {
+      console.log(apiResponse)
+    }
+  }
+
+
 
   return (
     <div className="flex max-w-md flex-col gap-4 m-auto">
@@ -86,7 +126,7 @@ export default function CreateCollection() {
         <div className="mb-2 block">
           <Label
             htmlFor="maxParticipants"
-            value=" Max Participants"
+            value=" Max Submissions"
           />
         </div>
         <TextInput

@@ -36,7 +36,9 @@ const CreatedOffer= () => {
 
   const rendered = data.map((d,k)=>{
     const status = d.status === 0 ? "pending": d.status===1?"accepted":"rejected"
-    const list = [parseInt(d.collectionIndex),formatEther(d.deposit),d.requestURI,status,d.resultURI]
+    const command = d.requestURI
+    const visibleCommand = command?.slice(0,5) +"..."+command?.slice(-4)
+    const list = [parseInt(d.collectionIndex),formatEther(d.deposit),visibleCommand,status,d.resultURI]
     return (
 <TableRow rowContent={list} key = {k}/>
 
