@@ -1,21 +1,66 @@
-import Head from 'next/head'
-import Image from 'next/image'
-//import styles from '../styles/Home.module.css'
-import React, { useState } from 'react';
-import { encryptAndUpload } from '@/encrypt/encrypt.js';
+import { useState } from 'react';
+import lit from '@/encrypt/encrypt.js';
 
-export default function Home() {
-  const [buttonText, setButtonText] = useState('Click me');
 
-  const handleClick = async() => {
-    const result = await encryptAndUpload('../../test/testfile.txt')
-    console.log(result)
-    setButtonText('Button clicked!');
-  };
+
+const noAuthError = "The access control condition check failed! You should have at least 0 ETH to decrypt this file.";
+
+function Home() {
+
+  const [file, setFile] = useState(null);
+  const [encryptedFile, setEncryptedFile] = useState(null);
+  const [encryptedSymmetricKey, setEncryptedSymmetricKey] = useState(null);
+  const [fileSize, setFileSize] = useState(0);
+
+  const selectFile = (e) => {
+    setFile(e.target.files[0]);
+    setEncryptedFile(null);
+    setEncryptedSymmetricKey(null);
+    setFileSize(0);
+  }
+
+  const encryptFile = async () => {
+    if (file === null) {
+      alert("Please select a file before encrypting!");
+      return;
+    }
+
+    const { encryptedFile, encryptedSymmetricKey } = await lit.encryptData(file);
+    setEncryptedFile(encryptedFile);
+    setEncryptedSymmetricKey(encryptedSymmetricKey);
+    setFileSize(0);
+  }
+
+  const decryptFile = async () => {
+    if (encryptedFile === null) {
+      alert("Please encrypt your file first!");
+      return;
+    }
+
+    try {
+      const decrypted = await lit.decryptData(encryptedFile, encryptedSymmetricKey);
+      setFileSize(decrypted.byteLength);
+    } catch (error) {
+      alert(noAuthError);
+    }
+  }
 
   return (
-    <div>
-      <button onClick={handleClick}>{buttonText}</button>
+    <div className="App">
+        <h1>Encrypt & Decrypt a file using Lit SDK</h1>
+        <input type="file" name="file" onChange={selectFile} />
+        <div>
+          <button onClick={encryptFile}>Encrypt</button>
+          <button onClick={decryptFile}>Decrypt</button>
+        </div>
+        {(encryptedFile !== null && fileSize === 0) && (
+          <h3>File Encrypted: {file.name}. Thanks for using Lit!</h3>
+        )}
+        {fileSize > 0 && (
+          <h3>File Decrypted: {file.name} of {fileSize} bytes</h3>
+        )}
     </div>
   );
 }
+
+export default Home;
